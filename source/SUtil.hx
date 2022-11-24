@@ -1,6 +1,7 @@
 package;
 
 #if android
+import android.Hardware;
 import android.Permissions;
 import android.os.Build.VERSION;
 import android.os.Environment;
