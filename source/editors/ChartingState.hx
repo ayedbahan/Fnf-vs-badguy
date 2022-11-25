@@ -450,7 +450,7 @@ class ChartingState extends MusicBeatState
 			var songName:String = Paths.formatToSongPath(_song.song);
 			var file:String = Paths.json(songName + '/events');
 			#if MODS_ALLOWED
-			if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(SUtil.getPath() + file))
+			if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(SUtil.getStorageDirectory() + file))
 			#else
 			if (OpenFlAssets.exists(file))
 			#end
@@ -496,7 +496,7 @@ class ChartingState extends MusicBeatState
 		stepperSpeed.name = 'song_speed';
 		blockPressWhileTypingOnStepper.push(stepperSpeed);
 		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), SUtil.getPath() + Paths.getPreloadPath('characters/')];
+		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), SUtil.getStorageDirectory() + Paths.getPreloadPath('characters/')];
 		for(mod in Paths.getGlobalMods())
 			directories.push(Paths.mods(mod + '/characters/'));
 		#else
@@ -504,7 +504,7 @@ class ChartingState extends MusicBeatState
 		#end
 
 		var tempMap:Map<String, Bool> = new Map<String, Bool>();
-		var characters:Array<String> = CoolUtil.coolTextFile(SUtil.getPath() + Paths.txt('characterList'));
+		var characters:Array<String> = CoolUtil.coolTextFile(SUtil.getStorageDirectory() + Paths.txt('characterList'));
 		for (i in 0...characters.length) {
 			tempMap.set(characters[i], true);
 		}
@@ -552,7 +552,7 @@ class ChartingState extends MusicBeatState
 		blockPressWhileScrolling.push(player2DropDown);
 
 		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('stages/'), Paths.mods(Paths.currentModDirectory + '/stages/'), SUtil.getPath() + Paths.getPreloadPath('stages/')];
+		var directories:Array<String> = [Paths.mods('stages/'), Paths.mods(Paths.currentModDirectory + '/stages/'), SUtil.getStorageDirectory() + Paths.getPreloadPath('stages/')];
 		for(mod in Paths.getGlobalMods())
 			directories.push(Paths.mods(mod + '/stages/'));
 		#else
@@ -560,7 +560,7 @@ class ChartingState extends MusicBeatState
 		#end
 
 		tempMap.clear();
-		var stageFile:Array<String> = CoolUtil.coolTextFile(SUtil.getPath() + Paths.txt('stageList'));
+		var stageFile:Array<String> = CoolUtil.coolTextFile(SUtil.getStorageDirectory() + Paths.txt('stageList'));
 		var stages:Array<String> = [];
 		for (i in 0...stageFile.length) { //Prevent duplicates
 			var stageToCheck:String = stageFile[i];
@@ -2520,7 +2520,7 @@ class ChartingState extends MusicBeatState
 		#if MODS_ALLOWED
 		var path:String = Paths.modFolders(characterPath);
 		if (!FileSystem.exists(path)) {
-			path = SUtil.getPath() + Paths.getPreloadPath(characterPath);
+			path = SUtil.getStorageDirectory() + Paths.getPreloadPath(characterPath);
 		}
 
 		if (!FileSystem.exists(path))
@@ -2529,7 +2529,7 @@ class ChartingState extends MusicBeatState
 		if (!OpenFlAssets.exists(path))
 		#end
 		{
-			path = SUtil.getPath() + Paths.getPreloadPath('characters/' + Character.DEFAULT_CHARACTER + '.json'); //If a character couldn't be found, change him to BF just to prevent a crash
+			path = SUtil.getStorageDirectory() + Paths.getPreloadPath('characters/' + Character.DEFAULT_CHARACTER + '.json'); //If a character couldn't be found, change him to BF just to prevent a crash
 		}
 
 		#if MODS_ALLOWED
