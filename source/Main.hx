@@ -86,7 +86,7 @@ class Main extends Sprite
 		SUtil.checkPermissions();
 	
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, Std.int(zoom), framerate, framerate, true, false));
+		new FlxGame(gameWidth, gameHeight, initialState, Std.int(bool), framerate, framerate, true, false));
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
